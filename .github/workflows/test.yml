@@ -4,5 +4,5 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@2
+      - uses: actions/checkout@v2
       - run: cmake ./0.c
