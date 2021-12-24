@@ -2,12 +2,10 @@ name: github-actions-demo
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cd ${{ github.workspace }}
-      - run: mkdir build 
-      - run: cd build
-      - run: cmake ${{ github.workspace }}
-      - run: cmake --build .
-      - run: ./Debug/SettingUpGoogleTest.exe
+      - uses: actions/checkout@2
+      - run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build ${{github.workspace}}/build --config Release
+      - working-directory: ${{github.workspace}}/build
+      - run: ctest -C Release
